@@ -1,10 +1,10 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text} from 'react-native';
 
-export default function App(): React.JSX.Element {
+export default function HomeScreen(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Hello Tetris</Text>
+      <Text>Home Screen For Test</Text>
     </SafeAreaView>
   );
 }

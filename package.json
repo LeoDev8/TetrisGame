@@ -8,8 +8,7 @@
     "ios-15pm": "react-native run-ios --simulator='iPhone 15 Pro Max'",
     "lint": "eslint .",
     "start": "react-native start",
-    "commit": "git add .; git commit -m ",
-    "push": "git push -u origin main",
+    "push": "bash ./gitpushshell.sh",
     "test": "jest"
   },
   "dependencies": {

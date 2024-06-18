@@ -1,10 +1,17 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import BtnArea from './components/BtnArea';
+import MainArea from './components/MainArea';
+import ScoreArea from './components/ScoreArea';
 
 export default function App(): React.JSX.Element {
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Hello Tetris</Text>
+      <View style={styles.topDisplay}>
+        <MainArea></MainArea>
+        <ScoreArea></ScoreArea>
+      </View>
+      <BtnArea></BtnArea>
     </SafeAreaView>
   );
 }
@@ -12,6 +19,11 @@ export default function App(): React.JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  topDisplay: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },

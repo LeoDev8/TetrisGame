@@ -36,6 +36,28 @@ export class SingleBlock {
   }
 }
 
+export class StageRow {
+  constructor(columnNum = 1, y_ord = 0) {
+    this.columnNum = columnNum;
+    this.y_ord = y_ord;
+  }
+
+  render() {
+    const rowViewList = [];
+    for (let i = 0; i < this.columnNum; i++) {
+      rowViewList.push(
+        new SingleBlock(
+          '#ccc',
+          i *
+            (blockDimentions.outsideLength + blockDimentions.eachBlockDistance),
+          this.y_ord,
+        ).render(),
+      );
+    }
+    return <View>{rowViewList}</View>;
+  }
+}
+
 // Define The Map Ordinate for each type of blocks
 const blockShapeMap = [
   //0 田type
@@ -69,8 +91,9 @@ const blockShapeMap = [
   ],
   //5 -> T type
   [
-    [0, 1, 0],
-    [1, 1, 1],
+    [1, 0],
+    [1, 1],
+    [1, 0],
   ],
   //6 -> 1 type
   [
@@ -112,10 +135,10 @@ const blockOrdMap = [
     [1, 2],
   ], //4 -> z type 2
   [
+    [0, 0],
     [0, 1],
-    [1, 0],
     [1, 1],
-    [2, 1],
+    [0, 2],
   ], //5 -> T type
   [
     [0, 0],
@@ -136,15 +159,19 @@ export default class SpecialBlock {
     return (
       <View>
         {this.template.map(([x_ord, y_ord], index) => {
-          return new SingleBlock(
-            this.color,
-            x_ord *
-              (blockDimentions.outsideLength +
-                blockDimentions.eachBlockDistance),
-            y_ord *
-              (blockDimentions.outsideLength +
-                blockDimentions.eachBlockDistance),
-          ).render();
+          return (
+            <View key={index}>
+              {new SingleBlock(
+                this.color,
+                x_ord *
+                  (blockDimentions.outsideLength +
+                    blockDimentions.eachBlockDistance),
+                y_ord *
+                  (blockDimentions.outsideLength +
+                    blockDimentions.eachBlockDistance),
+              ).render()}
+            </View>
+          );
         })}
       </View>
     );

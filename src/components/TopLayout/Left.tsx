@@ -5,6 +5,7 @@ import SpecialBlock, {SingleBlock} from '../gameBlocks';
 export default function Left(): React.JSX.Element {
   return (
     <View style={styles.container}>
+      {/* 如何排列以及父元素的坐标后续使用的时候在进行调试 */}
       {Array(7)
         .fill(1)
         .map((item, index) => {

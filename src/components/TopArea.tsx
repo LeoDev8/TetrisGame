@@ -17,6 +17,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    height: '70%',
+    height: '60%',
   },
 });

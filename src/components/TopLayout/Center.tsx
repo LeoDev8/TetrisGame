@@ -20,7 +20,11 @@ export default function Center(): React.JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'orange',
     width: '70%',
+    backgroundColor: 'transparent',
+    borderRadius: 25,
+    borderWidth: 2,
+    borderTopWidth: 0,
+    marginTop: 30,
   },
 });

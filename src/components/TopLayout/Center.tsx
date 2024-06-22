@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, ScrollView} from 'react-native';
 import {frameDimentions, blockDimentions} from '../../gameSettings';
-import {SingleBlock, StageRow} from '../gameBlocks';
-
-const gameStageMap = Array(22).fill(Array(10).fill(0));
+import SpecialBlock, {StageRow} from '../gameBlocks';
 
 export default function Center(): React.JSX.Element {
+  const gameStageMap = Array(22).fill(Array(10).fill(0));
+  const L1Example = new SpecialBlock(2, '#f40');
+  const [currentBlock, setCurrentBlock] = useState(L1Example.render());
+  useEffect(() => {
+    L1Example.fallDown(() => {
+      setCurrentBlock(L1Example.render());
+    });
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Tetris Game</Text>
@@ -18,9 +24,9 @@ export default function Center(): React.JSX.Element {
                 (blockDimentions.outsideLength +
                   blockDimentions.eachBlockDistance),
             ).render();
-            console.log(rowView);
             return rowView;
           })}
+          <View>{currentBlock}</View>
         </View>
         <View style={styles.scores}></View>
       </View>

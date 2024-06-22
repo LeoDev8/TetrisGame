@@ -9,7 +9,7 @@ export default function Left(): React.JSX.Element {
       {Array(7)
         .fill(1)
         .map((item, index) => {
-          const abc = new SpecialBlock(index, '#f4f').render();
+          const abc = new SpecialBlock(index, '#000').render();
           return (
             <View
               key={index}

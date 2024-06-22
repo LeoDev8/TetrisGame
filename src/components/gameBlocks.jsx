@@ -155,6 +155,16 @@ export default class SpecialBlock {
     this.template = blockOrdMap[type_index];
   }
 
+  fallDown(callback) {
+    setInterval(() => {
+      this.template = this.template.map(([x_ord, y_ord], index) => {
+        return [x_ord, y_ord + 1];
+      });
+      callback();
+      console.log(this.template);
+    }, 1000);
+  }
+
   render() {
     return (
       <View>

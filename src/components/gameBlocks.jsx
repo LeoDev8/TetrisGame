@@ -1,7 +1,13 @@
 import React from 'react';
 import {blockDimentions} from '../gameSettings';
 import {View, StyleSheet} from 'react-native';
-import {PollingWatchKind, isLeftHandSideExpression} from 'typescript';
+import {
+  SINGLE_BLOCK_OUTSIDE_LENGTH,
+  SINGLE_BLOCK_INSIDE_LENGTH,
+  TWO_BLOCK_MARGIN,
+  SINGLE_BLOCK_OUTSIDE_THICKNESS,
+  SINGLE_BLOCK_OUT_INNER_DISTANCE,
+} from '../gameSettings';
 
 export class SingleBlock {
   // constructor(color, x_ord = -30, y_ord = -250) {
@@ -11,18 +17,18 @@ export class SingleBlock {
     this.y_ord = y_ord;
     this._styles = StyleSheet.create({
       constainer: {
-        width: blockDimentions.outsideLength,
-        height: blockDimentions.outsideLength,
+        width: SINGLE_BLOCK_OUTSIDE_LENGTH,
+        height: SINGLE_BLOCK_OUTSIDE_LENGTH,
         position: 'absolute',
         left: this.x_ord,
         top: this.y_ord,
-        borderWidth: blockDimentions.outsideThickness,
-        padding: blockDimentions.outInnerDistance,
+        borderWidth: SINGLE_BLOCK_OUTSIDE_THICKNESS,
+        padding: SINGLE_BLOCK_OUT_INNER_DISTANCE,
         borderColor: this.color,
       },
       innerBlock: {
-        width: blockDimentions.innersideLength,
-        height: blockDimentions.innersideLength,
+        width: SINGLE_BLOCK_INSIDE_LENGTH,
+        height: SINGLE_BLOCK_INSIDE_LENGTH,
         backgroundColor: this.color,
       },
     });
@@ -49,15 +55,13 @@ export class StageRow {
         <View key={i}>
           {new SingleBlock(
             '#ccc',
-            i *
-              (blockDimentions.outsideLength +
-                blockDimentions.eachBlockDistance),
+            i * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
             this.y_ord,
           ).render()}
         </View>,
       );
     }
-    return <View>{rowViewList}</View>;
+    return rowViewList;
   }
 }
 
@@ -159,14 +163,15 @@ export default class SpecialBlock {
   }
 
   fallDown(callback) {
-    setInterval(() => {
-      this.template = this.template.map(([x_ord, y_ord], index) => {
-        return [x_ord, y_ord + 1];
-      });
-      callback();
-      console.log(this.template);
-    }, 1000);
+    this.template = this.template.map(([x_ord, y_ord], index) => {
+      return [x_ord, y_ord + 1];
+    });
+    callback();
   }
+
+  stopFallDown() {}
+
+  moveRight() {}
 
   render() {
     return (
@@ -176,12 +181,8 @@ export default class SpecialBlock {
             <View key={index}>
               {new SingleBlock(
                 this.color,
-                x_ord *
-                  (blockDimentions.outsideLength +
-                    blockDimentions.eachBlockDistance),
-                y_ord *
-                  (blockDimentions.outsideLength +
-                    blockDimentions.eachBlockDistance),
+                x_ord * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
+                y_ord * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
               ).render()}
             </View>
           );

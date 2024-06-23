@@ -4,54 +4,45 @@
  */
 import {Dimensions} from 'react-native';
 
-// Design Scatch Params
-const OUTSIDE_LENGTH = 25;
-const INNERSIDE_LENGTH = 11;
-const OUT_INNER_DISTANCE = 3;
-const OUTSIDE_THICKNESS = 4;
-const SCREEN_WIDTH = 666;
-const SCREEN_HEIGHT = 1300;
-const COLUMN_SINGLE_BLOCK_NUMBER = 10;
-const ROW_SINGLE_BLOCK_NUMBER = 22;
-const EACH_BLOCK_DISTANCE = 2;
-const GAME_STAGE_WIDTH =
-  OUTSIDE_LENGTH * COLUMN_SINGLE_BLOCK_NUMBER +
-  (COLUMN_SINGLE_BLOCK_NUMBER - 1) * EACH_BLOCK_DISTANCE;
-const GAME_STAGE_HEIGHT =
-  OUTSIDE_LENGTH * ROW_SINGLE_BLOCK_NUMBER +
-  EACH_BLOCK_DISTANCE * (ROW_SINGLE_BLOCK_NUMBER - 1);
-const YELLOW_FRAME_WIDTH = 400;
-const YELLOW_FRAME_HEIGHT = 624;
+// Single Block settings
+export const SINGLE_BLOCK_OUTSIDE_LENGTH = 16;
+export const SINGLE_BLOCK_INSIDE_LENGTH = 8;
+export const SINGLE_BLOCK_OUT_INNER_DISTANCE = 2;
+export const SINGLE_BLOCK_OUTSIDE_THICKNESS = 2;
+export const TWO_BLOCK_MARGIN = 2;
+
+// Stage settings
+export const STAGE_FRAME_THICKNESS = 1; // stage frame border thickness
+const GAME_STAGE_LENGTH_OFFSET = 2 * STAGE_FRAME_THICKNESS; // offset number for the stage border
+export const STAGE_ROW = 22;
+export const STAGE_COLUMN = 10;
+export const GAME_STAGE_WIDTH =
+  SINGLE_BLOCK_OUTSIDE_LENGTH * STAGE_COLUMN +
+  (STAGE_COLUMN - 1) * TWO_BLOCK_MARGIN +
+  GAME_STAGE_LENGTH_OFFSET;
+export const GAME_STAGE_HEIGHT =
+  SINGLE_BLOCK_OUTSIDE_LENGTH * STAGE_ROW +
+  (STAGE_ROW - 1) * TWO_BLOCK_MARGIN +
+  GAME_STAGE_LENGTH_OFFSET;
+
+// Game
 
 // Sizes in this iPhone
 const ScreenWidth = Dimensions.get('screen').width;
 const ScreenHeight = Dimensions.get('screen').height;
-const getRealDimension = param => (param / SCREEN_WIDTH) * ScreenWidth;
-const getRealDimensionY = param => (param / SCREEN_HEIGHT) * ScreenHeight;
-export const blockDimentions = {
-  outsideLength: getRealDimension(OUTSIDE_LENGTH),
-  innersideLength: getRealDimension(INNERSIDE_LENGTH),
-  outInnerDistance: getRealDimension(OUT_INNER_DISTANCE),
-  outsideThickness: getRealDimension(OUTSIDE_THICKNESS),
-  eachBlockDistance: getRealDimension(EACH_BLOCK_DISTANCE),
+
+export const yellowFrameDimentions = {
+  yelowFrameWidth: GAME_STAGE_WIDTH + 110,
+  yellowFrameHeight: GAME_STAGE_HEIGHT + 20,
 };
-
-export const frameDimentions = {
-  yelowFrameWidth: getRealDimension(YELLOW_FRAME_WIDTH),
-  yellowFrameHeight: getRealDimension(YELLOW_FRAME_HEIGHT),
-  gameStageWidth: getRealDimension(GAME_STAGE_WIDTH),
-  gameStageHeight: getRealDimension(GAME_STAGE_HEIGHT),
-};
-
-console.log(`Screen Width: ${ScreenWidth}`);
-console.log(`Screen Height: ${ScreenHeight}`);
-
-Object.keys(frameDimentions).map(item => {
-  console.log(`${item}: ${frameDimentions[item]}`);
-});
 
 // Colors
-export const backgroundColor = '#D2F7FF';
+const getRandomNumber = (start, end) => {
+  return Math.round(start + Math.random() * (end - start));
+};
+const backgroundColors = ['#fce', '#cc0', '#cce', '#efcdcc'];
+export const backgroundColor =
+  backgroundColors[getRandomNumber(0, backgroundColors.length - 1)];
 
 export const tetrisColors = {
   black: '#000',

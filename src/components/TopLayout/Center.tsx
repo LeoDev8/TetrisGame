@@ -1,33 +1,42 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text, ScrollView} from 'react-native';
-import {frameDimentions, blockDimentions} from '../../gameSettings';
-import SpecialBlock, {StageRow} from '../gameBlocks';
+import {View, StyleSheet, Text} from 'react-native';
+import {
+  yellowFrameDimentions,
+  SINGLE_BLOCK_OUTSIDE_LENGTH,
+  TWO_BLOCK_MARGIN,
+  GAME_STAGE_WIDTH,
+  GAME_STAGE_HEIGHT,
+  STAGE_COLUMN,
+  STAGE_ROW,
+  STAGE_FRAME_THICKNESS,
+} from '../../gameSettings';
+import SpecialBlock, {StageRow, SingleBlock} from '../gameBlocks';
 
 export default function Center(): React.JSX.Element {
-  const gameStageMap = Array(22).fill(Array(10).fill(0));
-  const L1Example = new SpecialBlock(2, '#f40');
-  const [currentBlock, setCurrentBlock] = useState(L1Example.render());
-  useEffect(() => {
-    L1Example.fallDown(() => {
-      setCurrentBlock(L1Example.render());
-    });
-  }, []);
+  const gameStageMap = Array(STAGE_ROW).fill(Array(STAGE_COLUMN).fill(0));
+  // const L1Example = new SpecialBlock(2, '#f40');
+  // const [currentBlock, setCurrentBlock] = useState(L1Example.render());
+  // useEffect(() => {
+  //   // L1Example.fallDown(() => {
+  //   //   setCurrentBlock(L1Example.render());
+  //   // });
+  // }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Tetris Game</Text>
       <View style={styles.yellowFrame}>
         <View style={styles.gameStageFrame}>
           {/* Gamge Stage View Part(need to be changed) */}
-          {/* {gameStageMap.map((row, index) => {
+          {gameStageMap.map((row, index) => {
             const rowView = new StageRow(
               row.length,
-              index *
-                (blockDimentions.outsideLength +
-                  blockDimentions.eachBlockDistance),
+              index * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
             ).render();
             return <View key={index}>{rowView}</View>;
-          })} */}
-          <View>{currentBlock}</View>
+          })}
+
+          {/* Current Block */}
+          {/* <View>{currentBlock}</View> */}
         </View>
         <View style={styles.scores}></View>
       </View>
@@ -47,7 +56,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 30,
-    // padding: 30,
   },
   headerText: {
     position: 'absolute',
@@ -57,13 +65,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Times New Roman',
   },
   yellowFrame: {
-    width: frameDimentions.yelowFrameWidth,
-    height: frameDimentions.yellowFrameHeight,
+    width: yellowFrameDimentions.yelowFrameWidth,
+    height: yellowFrameDimentions.yellowFrameHeight,
     backgroundColor: '#E7E7E7',
     borderRadius: 10,
     borderWidth: 2,
     borderColor: '#FFFF00',
-    transform: [{translateY: 25}],
+    transform: [{translateY: yellowFrameDimentions.yellowFrameHeight / 20 - 8}],
+
     // shadowColor: 'black',
     // shadowOffset: {width: 2, height: 2},
     // shadowOpacity: 1,
@@ -73,9 +82,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 6,
     top: 10,
-    width: frameDimentions.gameStageWidth + 2.5,
-    height: frameDimentions.gameStageHeight + 2.5,
-    borderWidth: 1,
+    width: GAME_STAGE_WIDTH,
+    height: GAME_STAGE_HEIGHT,
+    borderWidth: STAGE_FRAME_THICKNESS,
   },
   scores: {},
 });

@@ -6,7 +6,7 @@ export default function Left(): React.JSX.Element {
   return (
     <View style={styles.container}>
       {/* 如何排列以及父元素的坐标后续使用的时候在进行调试 */}
-      {Array(7)
+      {Array(6)
         .fill(1)
         .map((item, index) => {
           const abc = new SpecialBlock(index, '#000').render();
@@ -16,7 +16,7 @@ export default function Left(): React.JSX.Element {
               style={{
                 position: 'absolute',
                 left: 20,
-                top: 60 * index,
+                top: 60 * index + 90,
               }}>
               {abc}
             </View>

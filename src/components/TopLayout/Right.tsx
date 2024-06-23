@@ -1,15 +1,25 @@
 import React from 'react';
 import {View, StyleSheet, Text, ScrollView} from 'react-native';
-import {SingleBlock} from '../gameBlocks';
+import SpecialBlock from '../gameBlocks';
 
 export default function Right(): React.JSX.Element {
   return (
     <View style={styles.container}>
-      {Array(1)
+      {Array(6)
         .fill(1)
         .map((item, index) => {
-          const abc = new SingleBlock('red').render();
-          return <View key={index}>{abc}</View>;
+          const abc = new SpecialBlock(index, '#999').render();
+          return (
+            <View
+              key={index}
+              style={{
+                position: 'absolute',
+                left: 20,
+                top: (60 * index) + 90,
+              }}>
+              {abc}
+            </View>
+          );
         })}
     </View>
   );

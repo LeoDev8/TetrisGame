@@ -46,12 +46,15 @@ export class StageRow {
     const rowViewList = [];
     for (let i = 0; i < this.columnNum; i++) {
       rowViewList.push(
-        new SingleBlock(
-          '#ccc',
-          i *
-            (blockDimentions.outsideLength + blockDimentions.eachBlockDistance),
-          this.y_ord,
-        ).render(),
+        <View key={i}>
+          {new SingleBlock(
+            '#ccc',
+            i *
+              (blockDimentions.outsideLength +
+                blockDimentions.eachBlockDistance),
+            this.y_ord,
+          ).render()}
+        </View>,
       );
     }
     return <View>{rowViewList}</View>;

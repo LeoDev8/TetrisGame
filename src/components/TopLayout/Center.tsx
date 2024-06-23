@@ -17,15 +17,16 @@ export default function Center(): React.JSX.Element {
       <Text style={styles.headerText}>Tetris Game</Text>
       <View style={styles.yellowFrame}>
         <View style={styles.gameStageFrame}>
-          {gameStageMap.map((row, index) => {
+          {/* Gamge Stage View Part(need to be changed) */}
+          {/* {gameStageMap.map((row, index) => {
             const rowView = new StageRow(
               row.length,
               index *
                 (blockDimentions.outsideLength +
                   blockDimentions.eachBlockDistance),
             ).render();
-            return rowView;
-          })}
+            return <View key={index}>{rowView}</View>;
+          })} */}
           <View>{currentBlock}</View>
         </View>
         <View style={styles.scores}></View>

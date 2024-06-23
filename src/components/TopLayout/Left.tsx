@@ -15,7 +15,7 @@ export default function Left(): React.JSX.Element {
               key={index}
               style={{
                 position: 'absolute',
-                left: 10,
+                left: 20,
                 top: 60 * index,
               }}>
               {abc}

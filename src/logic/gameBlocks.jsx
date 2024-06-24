@@ -7,66 +7,12 @@ import {
   TWO_BLOCK_MARGIN,
   SINGLE_BLOCK_OUTSIDE_THICKNESS,
   SINGLE_BLOCK_OUT_INNER_DISTANCE,
+  STAGE_COLUMN,
+  STAGE_ROW,
 } from '../settings';
 
-export class SingleBlock {
-  // constructor(color, x_ord = -30, y_ord = -250) {
-  constructor(color = '#000', x_ord = 0, y_ord = 0) {
-    this.color = color;
-    this.x_ord = x_ord;
-    this.y_ord = y_ord;
-    this._styles = StyleSheet.create({
-      constainer: {
-        width: SINGLE_BLOCK_OUTSIDE_LENGTH,
-        height: SINGLE_BLOCK_OUTSIDE_LENGTH,
-        position: 'absolute',
-        left: this.x_ord,
-        top: this.y_ord,
-        borderWidth: SINGLE_BLOCK_OUTSIDE_THICKNESS,
-        padding: SINGLE_BLOCK_OUT_INNER_DISTANCE,
-        borderColor: this.color,
-      },
-      innerBlock: {
-        width: SINGLE_BLOCK_INSIDE_LENGTH,
-        height: SINGLE_BLOCK_INSIDE_LENGTH,
-        backgroundColor: this.color,
-      },
-    });
-  }
-  render() {
-    return (
-      <View style={this._styles.constainer}>
-        <View style={this._styles.innerBlock}></View>
-      </View>
-    );
-  }
-}
-
-export class StageRow {
-  constructor(columnNum = 1, y_ord = 0) {
-    this.columnNum = columnNum;
-    this.y_ord = y_ord;
-  }
-
-  render() {
-    const rowViewList = [];
-    for (let i = 0; i < this.columnNum; i++) {
-      rowViewList.push(
-        <View key={i}>
-          {new SingleBlock(
-            '#ccc',
-            i * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
-            this.y_ord,
-          ).render()}
-        </View>,
-      );
-    }
-    return rowViewList;
-  }
-}
-
 // Define The Map Ordinate for each type of blocks
-const blockShapeMap = [
+export const blockShapeMap = [
   //0 田type
   [
     [1, 1],
@@ -155,6 +101,39 @@ const blockOrdMap = [
   ], //6 -> 1 type
 ];
 
+export class SingleBlock {
+  // constructor(color, x_ord = -30, y_ord = -250) {
+  constructor(color = '#000', x_ord = 0, y_ord = 0) {
+    this.color = color;
+    this.x_ord = x_ord;
+    this.y_ord = y_ord;
+    this._styles = StyleSheet.create({
+      constainer: {
+        width: SINGLE_BLOCK_OUTSIDE_LENGTH,
+        height: SINGLE_BLOCK_OUTSIDE_LENGTH,
+        position: 'absolute',
+        left: this.x_ord * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
+        top: this.y_ord * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
+        borderWidth: SINGLE_BLOCK_OUTSIDE_THICKNESS,
+        padding: SINGLE_BLOCK_OUT_INNER_DISTANCE,
+        borderColor: this.color,
+      },
+      innerBlock: {
+        width: SINGLE_BLOCK_INSIDE_LENGTH,
+        height: SINGLE_BLOCK_INSIDE_LENGTH,
+        backgroundColor: this.color,
+      },
+    });
+  }
+  render() {
+    return (
+      <View style={this._styles.constainer}>
+        <View style={this._styles.innerBlock}></View>
+      </View>
+    );
+  }
+}
+
 export default class SpecialBlock {
   constructor(type_index, color = '#000') {
     this.type_index = type_index;
@@ -179,11 +158,7 @@ export default class SpecialBlock {
         {this.template.map(([x_ord, y_ord], index) => {
           return (
             <View key={index}>
-              {new SingleBlock(
-                this.color,
-                x_ord * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
-                y_ord * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
-              ).render()}
+              {new SingleBlock(this.color, x_ord, y_ord).render()}
             </View>
           );
         })}

@@ -25,8 +25,6 @@ export const GAME_STAGE_HEIGHT =
   (STAGE_ROW - 1) * TWO_BLOCK_MARGIN +
   GAME_STAGE_LENGTH_OFFSET;
 
-// Game
-
 // Sizes in this iPhone
 const ScreenWidth = Dimensions.get('screen').width;
 const ScreenHeight = Dimensions.get('screen').height;

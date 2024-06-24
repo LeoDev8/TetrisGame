@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text, ScrollView} from 'react-native';
-import SpecialBlock, {SingleBlock} from '../gameBlocks';
+import SpecialBlock, {SingleBlock} from '../../logic/gameBlocks';
 
 export default function Left(): React.JSX.Element {
   return (

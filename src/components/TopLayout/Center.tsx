@@ -2,18 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {
   yellowFrameDimentions,
-  SINGLE_BLOCK_OUTSIDE_LENGTH,
-  TWO_BLOCK_MARGIN,
   GAME_STAGE_WIDTH,
   GAME_STAGE_HEIGHT,
-  STAGE_COLUMN,
-  STAGE_ROW,
   STAGE_FRAME_THICKNESS,
+  STAGE_ROW,
+  STAGE_COLUMN,
 } from '../../settings';
-import SpecialBlock, {StageRow, SingleBlock} from '../gameBlocks';
+import Stage from '../../logic/Stage';
 
 export default function Center(): React.JSX.Element {
-  const gameStageMap = Array(STAGE_ROW).fill(Array(STAGE_COLUMN).fill(0));
   // const L1Example = new SpecialBlock(2, '#f40');
   // const [currentBlock, setCurrentBlock] = useState(L1Example.render());
   // useEffect(() => {
@@ -21,21 +18,14 @@ export default function Center(): React.JSX.Element {
   //   //   setCurrentBlock(L1Example.render());
   //   // });
   // }, []);
+
   return (
     <View style={styles.container}>
       {/* <Text style={styles.headerText}>俄罗斯方块</Text> */}
       <Text style={styles.headerText}>Tetris Game</Text>
       <View style={styles.yellowFrame}>
         <View style={styles.gameStageFrame}>
-          {/* Gamge Stage View Part(need to be changed) */}
-          {gameStageMap.map((row, index) => {
-            const rowView = new StageRow(
-              row.length,
-              index * (SINGLE_BLOCK_OUTSIDE_LENGTH + TWO_BLOCK_MARGIN),
-            ).render();
-            return <View key={index}>{rowView}</View>;
-          })}
-
+          <Stage></Stage>
           {/* Current Block */}
           {/* <View>{currentBlock}</View> */}
         </View>
@@ -44,8 +34,6 @@ export default function Center(): React.JSX.Element {
     </View>
   );
 }
-
-let language = 'Chinese';
 
 const styles = StyleSheet.create({
   container: {

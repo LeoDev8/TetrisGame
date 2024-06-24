@@ -50,3 +50,6 @@ export const tetrisColors = {
   blue: '#64F6FF',
   yellow: '#FFE664',
 };
+
+// Langusge Setings
+export const curLang = 'en';

@@ -1,5 +1,5 @@
 import React from 'react';
-import {blockDimentions} from '../gameSettings';
+import {blockDimentions} from '../settings';
 import {View, StyleSheet} from 'react-native';
 import {
   SINGLE_BLOCK_OUTSIDE_LENGTH,
@@ -7,7 +7,7 @@ import {
   TWO_BLOCK_MARGIN,
   SINGLE_BLOCK_OUTSIDE_THICKNESS,
   SINGLE_BLOCK_OUT_INNER_DISTANCE,
-} from '../gameSettings';
+} from '../settings';
 
 export class SingleBlock {
   // constructor(color, x_ord = -30, y_ord = -250) {

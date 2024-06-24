@@ -9,7 +9,7 @@ import {
   STAGE_COLUMN,
   STAGE_ROW,
   STAGE_FRAME_THICKNESS,
-} from '../../gameSettings';
+} from '../../settings';
 import SpecialBlock, {StageRow, SingleBlock} from '../gameBlocks';
 
 export default function Center(): React.JSX.Element {
@@ -23,6 +23,7 @@ export default function Center(): React.JSX.Element {
   // }, []);
   return (
     <View style={styles.container}>
+      {/* <Text style={styles.headerText}>俄罗斯方块</Text> */}
       <Text style={styles.headerText}>Tetris Game</Text>
       <View style={styles.yellowFrame}>
         <View style={styles.gameStageFrame}>
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     position: 'absolute',
-    top: -20,
+    top: -30,
     fontSize: 30,
     fontWeight: '500',
     fontFamily: 'Times New Roman',

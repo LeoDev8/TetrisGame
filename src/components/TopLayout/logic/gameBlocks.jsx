@@ -1,5 +1,5 @@
 import React from 'react';
-import {blockDimentions} from '../settings';
+import {blockDimentions} from '../../../settings';
 import {View, StyleSheet} from 'react-native';
 import {
   SINGLE_BLOCK_OUTSIDE_LENGTH,
@@ -9,7 +9,9 @@ import {
   SINGLE_BLOCK_OUT_INNER_DISTANCE,
   STAGE_COLUMN,
   STAGE_ROW,
-} from '../settings';
+} from '../../../settings';
+
+import {shapeToOrd, moveDown, checkMove} from '../../../tools/operations';
 
 // Define The Map Ordinate for each type of blocks
 export const blockShapeMap = [
@@ -56,6 +58,10 @@ export const blockShapeMap = [
     [1, 0],
   ],
 ];
+// console.log(shapeToOrd(blockShapeMap[1]));
+// moveDown(shapeToOrd(blockShapeMap[2]));
+// console.log(checkMove(shapeToOrd(blockShapeMap[2]), 'down'));
+
 const blockOrdMap = [
   [
     [0, 0],
@@ -133,6 +139,20 @@ export class SingleBlock {
     );
   }
 }
+
+/**
+ * Function for Rendering Single Block View
+ * @param {String} color
+ * @param {Number} row
+ * @param {Number} column
+ * @param  {...String} params
+ * @returns {SingleBlock} Single Block View
+ */
+export const _singleBlockView = (color, row, column, ...params) => {
+  return (
+    <View key={params}>{new SingleBlock(color, row, column).render()}</View>
+  );
+};
 
 export default class SpecialBlock {
   constructor(type_index, color = '#000') {

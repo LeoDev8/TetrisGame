@@ -8,7 +8,9 @@ import {
   STAGE_ROW,
   STAGE_COLUMN,
 } from '../../settings';
-import Stage from '../../logic/Stage';
+import StageMaps from './logic/StageBackground';
+import StageLock from './logic/StageLock';
+import CurrentBlock from './logic/CurrentBlock';
 
 export default function Center(): React.JSX.Element {
   // const L1Example = new SpecialBlock(2, '#f40');
@@ -18,6 +20,7 @@ export default function Center(): React.JSX.Element {
   //   //   setCurrentBlock(L1Example.render());
   //   // });
   // }, []);
+  // console.log(StageMaps);
 
   return (
     <View style={styles.container}>
@@ -25,9 +28,8 @@ export default function Center(): React.JSX.Element {
       <Text style={styles.headerText}>Tetris Game</Text>
       <View style={styles.yellowFrame}>
         <View style={styles.gameStageFrame}>
-          <Stage></Stage>
-          {/* Current Block */}
-          {/* <View>{currentBlock}</View> */}
+          <StageMaps></StageMaps>
+          <CurrentBlock></CurrentBlock>
         </View>
         <View style={styles.scores}></View>
       </View>

@@ -38,7 +38,15 @@ export const yellowFrameDimentions = {
 const getRandomNumber = (start, end) => {
   return Math.round(start + Math.random() * (end - start));
 };
-const backgroundColors = ['#fce', '#cc0', '#cce', '#efcdcc'];
+const backgroundColors = [
+  '#fce',
+  '#cce',
+  '#0085FF',
+  '#00FF57',
+  '#00D1FF',
+  '#00E0FF',
+  '#FF00FF',
+];
 export const backgroundColor =
   backgroundColors[getRandomNumber(0, backgroundColors.length - 1)];
 

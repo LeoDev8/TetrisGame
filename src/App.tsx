@@ -1,6 +1,6 @@
 import React from 'react';
 import {backgroundColor} from './settings';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import BottomArea from './components/BottomArea';
 import TopArea from './components/TopArea';
 

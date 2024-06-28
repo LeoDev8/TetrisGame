@@ -33,18 +33,18 @@ export default function BottomArea(): React.JSX.Element {
         </View>
       </View>
       <View style={styles.someSettingBtns}>
-        <View>
-          <TouchableOpacity>
+        <View style={styles.controleBtnContainer}>
+          <TouchableOpacity style={styles.controlBtns}>
             <Text>暂停</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity style={styles.controlBtns}>
             <Text>音效</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity style={[styles.controlBtns, styles.restartBtn]}>
             <Text>重玩</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.toBottomBtn}>
           <Text>掉落</Text>
         </TouchableOpacity>
       </View>
@@ -57,14 +57,15 @@ const styles = StyleSheet.create({
     width: 430,
     height: '40%',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   DirectionBtnsContainer: {
-    width: 190,
-    height: 190,
+    width: 150,
+    height: 150,
     justifyContent: 'space-between',
     transform: [{rotateZ: '-45deg'}],
+    marginRight: 40,
     // backgroundColor: '#f0f',
   },
   DirectionBtnGroup: {
@@ -73,13 +74,51 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   DirectionBtn: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffff00',
     transform: [{rotateZ: '45deg'}],
   },
-  someSettingBtns: {},
+  someSettingBtns: {
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  controleBtnContainer: {
+    width: '100%',
+    height: 20,
+    marginBottom: 100,
+    flexDirection: 'row',
+    // backgroundColor: 'red',
+  },
+
+  restartBtn: {
+    backgroundColor: 'yellow',
+    margin: 0,
+  },
+
+  controlBtns: {
+    width: 40,
+    height: 30,
+    backgroundColor: 'yellow',
+    marginRight: 2,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+
+  toBottomBtn: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'yellow',
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

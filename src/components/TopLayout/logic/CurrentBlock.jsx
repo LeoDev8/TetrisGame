@@ -8,6 +8,8 @@ const _getRandomNum = (start, end) => {
   return Math.round(start + Math.random() * (end - start));
 };
 
+
+
 // const renderCurrentBlock = (curBlockShape, startX, startY) => {
 //   console.log(curBlockShape);
 //   for (let i = 0; i < curBlockShape.length; i++) {

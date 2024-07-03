@@ -8,29 +8,22 @@ import {
   STAGE_ROW,
   STAGE_COLUMN,
 } from '../../settings';
-import StageMaps from './logic/StageBackground';
-import StageLock from './logic/StageLock';
-import CurrentBlock from './logic/CurrentBlock';
+
+import Block from './modules/Block';
+import BlockNativeViewer from './modules/Views/BlockNativeView';
 
 export default function Center(): React.JSX.Element {
-  // const L1Example = new SpecialBlock(2, '#f40');
-  // const [currentBlock, setCurrentBlock] = useState(L1Example.render());
-  // useEffect(() => {
-  //   // L1Example.fallDown(() => {
-  //   //   setCurrentBlock(L1Example.render());
-  //   // });
-  // }, []);
-  // console.log(StageMaps);
+  const block1 = new Block({x: 0, y: 0}, '#f40');
+  block1.point = {x: 1, y: 7};
+  block1.view = new BlockNativeViewer(block1, false);
+
+  console.log(block1.view.show());
 
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.headerText}>俄罗斯方块</Text> */}
       <Text style={styles.headerText}>Tetris Game</Text>
       <View style={styles.yellowFrame}>
-        <View style={styles.gameStageFrame}>
-          <StageMaps></StageMaps>
-          <CurrentBlock></CurrentBlock>
-        </View>
+        <View style={styles.gameStageFrame}></View>
         <View style={styles.scores}></View>
       </View>
     </View>

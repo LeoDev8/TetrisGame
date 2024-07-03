@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import './sources';
 
 export default function App(): React.JSX.Element {
   const styles = StyleSheet.create({

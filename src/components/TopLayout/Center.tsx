@@ -13,11 +13,16 @@ import Block from './modules/Block';
 import BlockNativeViewer from './modules/Views/BlockNativeView';
 
 export default function Center(): React.JSX.Element {
-  const block1 = new Block({x: 0, y: 0}, '#f40');
-  block1.point = {x: 1, y: 7};
-  block1.view = new BlockNativeViewer(block1, false);
+  // const block1 = new Block({x: 0, y: 0}, '#f40');
+  // // block1.point = {x: 1, y: 7};
+  // block1.view = new BlockNativeViewer(block1, false);
 
-  console.log(block1.view.show());
+  // const [curBlock, setCurBlock] = useState(block1.view.show());
+  // console.log(block1.view.show());
+
+  // useEffect(() => {
+
+  // }, []);
 
   return (
     <View style={styles.container}>

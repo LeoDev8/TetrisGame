@@ -23,4 +23,20 @@ export default class BlockGroup {
   public get blocks() {
     return this._generateBlocks(this._shape);
   }
+
+  /**
+   * Just Move Right, Do not do anything other.
+   * @returns {Point[]} Return an array of Point type
+   */
+  public moveRight(): Point[] {
+    let newPoints: Point[] = [];
+    for (let i = 0; i < this._shape.length; i++) {
+      newPoints.push({
+        x: this._shape[i].x + 1,
+        y: this._shape[i].y,
+      });
+    }
+    this._shape = newPoints;
+    return newPoints;
+  }
 }

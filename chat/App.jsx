@@ -1,84 +1,56 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import Game from './Game';
+import {StyleSheet, View, Button, Text} from 'react-native';
+import GameBoardComponent from './components/GameBoardComponent';
+import Game from './game/Game';
 
-const App = () => {
-  const [game, setGame] = useState(new Game());
+export default function App() {
+  const [game, setGame] = useState(null);
+  const [score, setScore] = useState(0);
 
-  useEffect(() => {
-    const gameLoop = setInterval(() => {
-      game.update(); // Example: Game loop to handle game logic
-      setGame(new Game(game)); // Force update
-    }, 1000);
+  // useEffect(() => {
+  //   const newGame = new Game(10, 20); // Initialize with board width and height
+  //   setGame(newGame);
+  //   // newGame.startGame();
 
-    return () => clearInterval(gameLoop);
-  }, []);
+  //   const interval = setInterval(() => {
+  //     // newGame.update();
+  //     // setScore(newGame.score); // Update score
+  //   }, 1000); // Update game state every second
 
-  const handleMoveDown = () => {
-    game.moveDown();
-    setGame(new Game(game));
-  };
+  //   return () => clearInterval(interval); // Cleanup interval on unmount
+  // }, []);
 
-  const handleRotate = () => {
-    game.rotate();
-    setGame(new Game(game));
+  const handleInput = input => {
+    game.handleInput(input);
   };
 
   return (
     <View style={styles.container}>
-      <Text>Score: {game.score}</Text>
-      <View style={styles.board}>
-        {/* Render game board grid and blocks dynamically */}
-        {/* {game.board.grid.map((row, rowIndex) => (
-          <View key={rowIndex} style={styles.row}>
-            {row.map((cell, colIndex) => (
-              <View
-                key={`${rowIndex}-${colIndex}`}
-                style={[styles.cell, {backgroundColor: cell.color}]}
-              />
-            ))}
-          </View>
-        ))} */}
+      <Text style={styles.score}>Score: {score}</Text>
+      <GameBoardComponent board={game?.board} />
+      <View style={styles.controls}>
+        <Button title="Left" onPress={() => handleInput('left')} />
+        <Button title="Right" onPress={() => handleInput('right')} />
+        <Button title="Down" onPress={() => handleInput('down')} />
+        <Button title="Rotate" onPress={() => handleInput('rotate')} />
       </View>
-      <TouchableOpacity onPress={handleMoveDown} style={styles.button}>
-        <Text>Move Down</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleRotate} style={styles.button}>
-        <Text>Rotate</Text>
-      </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#c40',
   },
-  board: {
+  score: {
+    fontSize: 24,
+    marginBottom: 10,
+  },
+  controls: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    borderWidth: 1,
-    borderColor: 'black',
-    marginTop: 10,
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  cell: {
-    width: 20,
-    height: 20,
-    borderWidth: 1,
-    borderColor: 'white',
-  },
-  button: {
-    marginTop: 10,
-    padding: 10,
-    backgroundColor: 'lightblue',
-    borderRadius: 5,
+    justifyContent: 'space-around',
+    width: '100%',
   },
 });
-
-export default App;

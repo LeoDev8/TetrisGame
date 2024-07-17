@@ -7,18 +7,18 @@ export default function App() {
   const [game, setGame] = useState(null);
   const [score, setScore] = useState(0);
 
-  // useEffect(() => {
-  //   const newGame = new Game(10, 20); // Initialize with board width and height
-  //   setGame(newGame);
-  //   // newGame.startGame();
+  useEffect(() => {
+    const newGame = new Game(10, 20); // Initialize with board width and height
+    setGame(newGame);
+    newGame.startGame();
 
-  //   const interval = setInterval(() => {
-  //     // newGame.update();
-  //     // setScore(newGame.score); // Update score
-  //   }, 1000); // Update game state every second
+    const interval = setInterval(() => {
+      newGame.update();
+      setScore(newGame.score); // Update score
+    }, 1000); // Update game state every second
 
-  //   return () => clearInterval(interval); // Cleanup interval on unmount
-  // }, []);
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
 
   const handleInput = input => {
     game.handleInput(input);

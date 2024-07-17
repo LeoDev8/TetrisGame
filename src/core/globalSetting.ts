@@ -4,12 +4,12 @@
 
 import {Point, Shape} from './types';
 
-export const startPoint: Point = {x: 0, y: 0};
+export const startPoint: Point = {x: 4, y: 0};
 
 export const shapes: Shape[] = [
   // J Type
   {
-    startPoint: {x: 4, y: 0},
+    startPoint,
     shapeArray: [
       [1, 0, 0],
       [1, 1, 1],
